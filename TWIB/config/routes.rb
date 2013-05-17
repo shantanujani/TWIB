@@ -1,4 +1,38 @@
 TWIB::Application.routes.draw do
+  # Routes for the Game resource:
+  # CREATE
+  get '/games/new', controller: 'games', action: 'new', as: 'new_game'
+  post '/games', controller: 'games', action: 'create'
+
+  # READ
+  get '/games', controller: 'games', action: 'index', as: 'games'
+  get '/games/:id', controller: 'games', action: 'show', as: 'game'
+
+  # UPDATE
+  get '/games/:id/edit', controller: 'games', action: 'edit', as: 'edit_game'
+  put '/games/:id', controller: 'games', action: 'update'
+
+  # DELETE
+  delete '/games/:id', controller: 'games', action: 'destroy'
+  #------------------------------
+
+  # Routes for the Team resource:
+  # CREATE
+  get '/teams/new', controller: 'teams', action: 'new', as: 'new_team'
+  post '/teams', controller: 'teams', action: 'create'
+
+  # READ
+  get '/teams', controller: 'teams', action: 'index', as: 'teams'
+  get '/teams/:id', controller: 'teams', action: 'show', as: 'team'
+
+  # UPDATE
+  get '/teams/:id/edit', controller: 'teams', action: 'edit', as: 'edit_team'
+  put '/teams/:id', controller: 'teams', action: 'update'
+
+  # DELETE
+  delete '/teams/:id', controller: 'teams', action: 'destroy'
+  #------------------------------
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

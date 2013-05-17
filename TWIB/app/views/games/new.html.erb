@@ -1,0 +1,31 @@
+<h1>New Game</h1>
+
+
+<%= form_tag(games_url, method: 'post') do %>
+
+
+  <div>
+    <%= label_tag :home_team_id %><br />
+    <%= number_field_tag :home_team_id %>
+  </div>
+
+  <div>
+    <%= label_tag :visiting_team_id %><br />
+    <%= number_field_tag :visiting_team_id %>
+  </div>
+
+  <div>
+    <%= label_tag :line %><br />
+    <%= text_field_tag :line %>
+  </div>
+
+  <div>
+    <%= label_tag :home_team_result %><br />
+    <%= check_box_tag :home_team_result? %>
+  </div>
+
+
+  <div>
+    <%= submit_tag "Create Game" %>
+  </div>
+<% end %>
