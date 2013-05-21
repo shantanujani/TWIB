@@ -1,0 +1,20 @@
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Title</th>
+      <th>Year</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @units.each do |unit| %>
+    <tr>
+      <td>
+        <%= link_to "Toast", "units/#{units.id}", method: 'delete' %>
+      </td>
+      <td><%= link_to movie.title, "/units/#{units.id}" %></td>
+      <td><%= unit.number %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
