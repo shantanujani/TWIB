@@ -1,0 +1,31 @@
+<h1>Editing Game #<%= @game.id %></h1>
+
+
+<%= form_tag(game_url(@game), method: 'put') do %>
+
+  <div>
+    <%= label_tag :home_team_id %><br />
+    <%= number_field_tag :home_team_id, @game.home_team_id %>
+  </div>
+
+  <div>
+    <%= label_tag :visiting_team_id %><br />
+    <%= number_field_tag :visiting_team_id, @game.visiting_team_id %>
+  </div>
+
+  <div>
+    <%= label_tag :line %><br />
+    <%= text_field_tag :line, @game.line %>
+  </div>
+
+  <div>
+    <%= label_tag :home_team_result %><br />
+    <%= check_box_tag :home_team_result, @game.home_team_result? %>
+  </div>
+
+  
+  <div>
+    <%= submit_tag "Update Game" %>
+  </div>
+
+<% end %>

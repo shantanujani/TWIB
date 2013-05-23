@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-TWIB::Application.config.secret_token = 'aeb82b3a0c89e0084869f69164a8ed05343576f612b7a1ae73c27e6cd8a61979ab869aebddf1aa97ea52d0edd332a976e35279b75da6b212e9e2fcfd49898a04'
+TWIB::Application.config.secret_token = '0433a1d2843463edcaab6036657489a357c5a544ccbafee44757316b74db8a8bd37dc326844d2fe7749970ae77966c37a6d2bdd549a5f6570e48cea27c85f5a7'

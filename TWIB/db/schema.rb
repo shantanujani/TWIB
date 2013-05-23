@@ -11,6 +11,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 0) do
+=======
+ActiveRecord::Schema.define(:version => 20130517192658) do
+
+  create_table "games", :force => true do |t|
+    t.integer "home_team_id"
+    t.integer "visiting_team_id"
+    t.float   "line"
+    t.boolean "home_team_result"
+  end
+
+  create_table "teams", :force => true do |t|
+    t.string "team_name"
+    t.string "conference"
+    t.string "division"
+  end
+>>>>>>> 978f31e37a750d94f0606517df161cdee1b0f699
 
 end
