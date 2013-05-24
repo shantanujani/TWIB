@@ -1,4 +1,7 @@
 TWIB::Application.routes.draw do
+  resources :users
+
+
   # Routes for the Game resource:
   # CREATE
   get '/games/new', controller: 'games', action: 'new', as: 'new_game'
@@ -36,9 +39,19 @@ TWIB::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
- get "/units", controller: 'units', action: 'index'
- post "/units", controller: 'units', action: 'create'
- 
+ get '/users/new', controller: 'users', action: 'new', as: 'new_user'
+  post '/users', controller: 'users', action: 'create'
+
+  # READ
+  get '/users', controller: 'users', action: 'index', as: 'users'
+  get '/users/:id', controller: 'users', action: 'show', as: 'user'
+
+  # UPDATE
+  get '/users/:id/edit', controller: 'users', action: 'edit', as: 'edit_user'
+  put '/users/:id', controller: 'users', action: 'update'
+
+  # DELETE
+  delete '/users/:id', controller: 'users', action: 'destroy'
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action

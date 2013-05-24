@@ -1,0 +1,69 @@
+Script started on Fri May 24 17:19:21 2013
+bash-3.2$ generate migration change_units_to_users
+bash: generate: command not found
+bash-3.2$ change [K[K[K[K[K[K[Kmigration change [K_units_to_users
+bash: migration: command not found
+bash-3.2$ gen migration change_units_to_users
+bash: gen: command not found
+bash-3.2$ change_units
+bash: change_units: command not found
+bash-3.2$ change
+bash: change: command not found
+bash-3.2$ change_column
+bash: change_column: command not found
+bash-3.2$ rails g
+Usage: rails generate GENERATOR [args] [options]
+
+General options:
+  -h, [--help]     # Print generator's options and usage
+  -p, [--pretend]  # Run but do not make any changes
+  -f, [--force]    # Overwrite files that already exist
+  -s, [--skip]     # Skip files that already exist
+  -q, [--quiet]    # Suppress status output
+
+Please choose a generator below.
+
+Rails:
+  assets
+  controller
+  generator
+  helper
+  integration_test
+  mailer
+  migration
+  model
+  observer
+  performance_test
+  resource
+  scaffold
+  scaffold_controller
+  session_migration
+  task
+
+Coffee:
+  coffee:assets
+
+Jquery:
+  jquery:install
+
+Js:
+  js:assets
+
+Starter:
+  starter:resource
+  starter:style
+
+bash-3.2$ migration change_string_[K[K[K[K[K[K[Kunits_to_users
+bash: migration: command not found
+bash-3.2$ change
+bash: change: command not found
+bash-3.2$ -f
+bash: -f: command not found
+bash-3.2$ --force
+bash: --force: command not found
+bash-3.2$ force
+bash: force: command not found
+bash-3.2$ exit
+exit
+
+Script done on Fri May 24 17:25:43 2013

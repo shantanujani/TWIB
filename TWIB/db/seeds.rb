@@ -17,3 +17,14 @@ data.each do |data|
 end
 
 puts "There are now #{Team.count} teams."
+
+data = [{user_first_name: "Jeff", user_last_name: "Cohen"}, {user_first_name: "Raghu", user_last_name: "Betina"}]
+data.each do |data|
+  t = User.new
+  t.user_first_name = data.fetch(:user_first_name)
+  t.user_last_name = data.fetch(:user_last_name)
+  t.save
+end
+
+puts "There are now #{User.count} users."
+
