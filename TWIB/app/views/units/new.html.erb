@@ -1,0 +1,21 @@
+<h1>Update Bets</h1>
+
+
+<%= form_tag(units_path, method: 'post') do %>
+
+
+  <div>
+    <%= label_tag :user_last_name %><br />
+    <%= text_field_tag :user_last_name %>
+  </div>
+
+  <div>
+    <%= label_tag :bet_results %><br />
+    <%= number_field_tag :bet_results %>
+  </div>
+
+
+  <div>
+    <%= submit_tag "Update Bets" %>
+  </div>
+<% end %>

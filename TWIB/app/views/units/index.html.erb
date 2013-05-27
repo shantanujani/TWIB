@@ -1,0 +1,21 @@
+<h1>Units Wagered</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @units.each do |unit| %>
+  <tr>
+    <td><%= link_to 'Show', unit %></td>
+    <td><%= link_to 'Edit', edit_unit_path(unit) %></td>
+    <td><%= link_to 'Destroy', unit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Update Bets', new_unit_path %>

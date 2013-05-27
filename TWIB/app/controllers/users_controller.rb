@@ -23,26 +23,28 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit
-    @user = User.find(params[:id])
-  end
-
   def create
     @user = User.new
-
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to @user, notice: 'User Profile was successfully created.' }
-        format.json { render json: @user, status: :created, location: @user }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    @user.user_first_name = params[:user_first_name]
+    @user.user_last_name = params[:user_last_name]
+    @user.unit = params[:unit]
+    
+    if @user.save
+      redirect_to users_url
+    else
+      render 'new'
     end
   end
 
+def edit
+    @user = User.find(params[:id])
+  end
+
+  
   def update
     @user = User.find(params[:id])
+    @user.user_first_name = params[:user_first_name]
+    @user.user_last_name = params[:user_last_name]
 
     respond_to do |format|
       if @user.update_attributes(params[:user])

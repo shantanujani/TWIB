@@ -1,12 +1,10 @@
 <h1>Users</h1>
 <p><%= link_to 'Add a New User', new_user_url %></p>
-<p><%= link_to 'Go back to Games', games_url %></p>
+<%= link_to 'Click to View Units', units_path %>
 
 <table>
   <thead>
     <tr>
-      <th>User First Name</th>
-      <th>User Last Name</th>
       <th></th>
       <th></th>
       <th></th>
@@ -19,6 +17,7 @@
 <% @users.each do |user| %>
   <tr>
     <td><%= user.user_name %></td>
+      <td><%= user.user_last_name %></td>
       <td><%= user.record %></td>
       <td><%= user.units %></td>
 
@@ -29,6 +28,8 @@
 </table>
 
 
-<%= link_to 'Click to View Units', new_user_path %>
+
+<p><%= link_to 'Go back to Games', games_url %></p>
+
 </tr>
 <br />

@@ -1,4 +1,7 @@
 TWIB::Application.routes.draw do
+  resources :units
+
+
   resources :users
 
 
