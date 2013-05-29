@@ -1,13 +1,14 @@
-<h1>Game #<%= @game.id %></h1>
+<h3>Game #<%= @game.id %></h3>
+
 
 <p>
   <b>Home team:</b>
-  <%= @game.home_team_id %>
+  <%= @game.home_team.team_name %>
 </p>
 
 <p>
   <b>Visiting team:</b>
-  <%= @game.visiting_team_id %>
+  <%= @game.visiting_team.team_name %>
 </p>
 
 <p>

@@ -1,4 +1,4 @@
-<h1>Editing Team #<%= @team.id %></h1>
+<h3>Editing Team #<%= @team.id %></h3>
 
 
 <%= form_tag(team_url(@team), method: 'put') do %>
@@ -18,7 +18,7 @@
     <%= text_field_tag :division, @team.division %>
   </div>
 
-  
+
   <div>
     <%= submit_tag "Update Team" %>
   </div>

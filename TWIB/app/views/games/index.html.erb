@@ -1,4 +1,4 @@
-<h1>Games</h1>
+<h3>Games</h3>
 
 <p><%= link_to 'Add a New Game', new_game_url %></p>
 
@@ -18,8 +18,8 @@
   <tbody>
   <% @games.each do |game| %>
     <tr>
-      <td><%= Team.find_by_id(game.home_team_id).team_name %></td>
-      <td><%= Team.find_by_id(game.visiting_team_id).team_name %></td>
+      <td><%= game.home_team.team_name %></td>
+      <td><%= game.visiting_team.team_name %></td>
       <td><%= game.line %></td>
    <!--    <td><%= game.home_team_result%></td> -->
 

@@ -1,16 +1,16 @@
-<h1>Editing Game #<%= @game.id %></h1>
+<h3>Editing Game #<%= @game.id %></h3>
 
 
 <%= form_tag(game_url(@game), method: 'put') do %>
 
   <div>
     <%= label_tag :home_team_id %><br />
-    <%= number_field_tag :home_team_id, @game.home_team.team_name %>
+    <%= select_tag :home_team_id, options_from_collection_for_select(Team.order('team_name'), :id, :team_name, @game.home_team_id) %>
   </div>
 
   <div>
     <%= label_tag :visiting_team_id %><br />
-    <%= number_field_tag :visiting_team_id, @game.visiting_team_id %>
+    <%= select_tag :visiting_team_id, options_from_collection_for_select(Team.order, :id, :team_name, @game.visiting_team_id) %>
   </div>
 
   <div>
