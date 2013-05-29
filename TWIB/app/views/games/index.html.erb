@@ -8,7 +8,7 @@
       <th>Home team</th>
       <th>Visiting team</th>
       <th>Line</th>
-      <th>Home team result</th>
+      <!-- <th>Home team result</th> -->
       <th></th>
       <th></th>
       <th></th>
@@ -18,11 +18,11 @@
   <tbody>
   <% @games.each do |game| %>
     <tr>
-      <td><%= game.home_team_id %></td>
-      <td><%= game.visiting_team_id %></td>
+      <td><%= Team.find_by_id(game.home_team_id).team_name %></td>
+      <td><%= Team.find_by_id(game.visiting_team_id).team_name %></td>
       <td><%= game.line %></td>
-      <td><%= game.home_team_result %></td>
-  
+   <!--    <td><%= game.home_team_result%></td> -->
+
       <td><%= link_to 'Show', game_url(game) %></td>
       <td><%= link_to 'Edit', edit_game_url(game) %></td>
       <td><%= link_to 'Destroy', game_url(game), method: 'delete', data: { confirm: "Do you really want to delete this game?" } %></td>

@@ -18,7 +18,7 @@
     @game.visiting_team_id = params[:visiting_team_id]
     @game.line = params[:line]
     @game.home_team_result = params[:home_team_result]
-    
+
     if @game.save
       redirect_to games_url
     else
@@ -36,11 +36,11 @@
     @game.visiting_team_id = params[:visiting_team_id]
     @game.line = params[:line]
     @game.home_team_result = params[:home_team_result]
-    
+
     if @game.save
       redirect_to games_url
     else
-      render 'new'
+      redirect_to edit_game_url, notice: "There was an error. Make sure you entered a valid number for the line."
     end
   end
 

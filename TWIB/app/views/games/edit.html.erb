@@ -5,7 +5,7 @@
 
   <div>
     <%= label_tag :home_team_id %><br />
-    <%= number_field_tag :home_team_id, @game.home_team_id %>
+    <%= number_field_tag :home_team_id, @game.home_team.team_name %>
   </div>
 
   <div>
@@ -23,7 +23,7 @@
     <%= check_box_tag :home_team_result, @game.home_team_result? %>
   </div>
 
-  
+
   <div>
     <%= submit_tag "Update Game" %>
   </div>

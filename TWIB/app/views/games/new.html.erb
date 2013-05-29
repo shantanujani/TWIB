@@ -6,12 +6,12 @@
 
   <div>
     <%= label_tag :home_team_id %><br />
-    <%= number_field_tag :home_team_id %>
+    <%= select_tag :home_team_id, options_from_collection_for_select(Team.order('team_name asc'), :id, :team_name) %>
   </div>
 
   <div>
     <%= label_tag :visiting_team_id %><br />
-    <%= number_field_tag :visiting_team_id %>
+    <%= select_tag :visiting_team_id, options_from_collection_for_select(Team.order('team_name asc'), :id, :team_name) %>
   </div>
 
   <div>
