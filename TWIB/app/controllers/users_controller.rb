@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  
+
   def index
     @users = User.all
     end
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     @user.user_first_name = params[:user_first_name]
     @user.user_last_name = params[:user_last_name]
     @user.unit = params[:unit]
-    
+
     if @user.save
       redirect_to users_url
     else
@@ -40,7 +40,7 @@ def edit
     @user = User.find(params[:id])
   end
 
-  
+
   def update
     @user = User.find(params[:id])
     @user.user_first_name = params[:user_first_name]

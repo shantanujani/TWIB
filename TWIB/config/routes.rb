@@ -42,7 +42,7 @@ TWIB::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
- get '/users/new', controller: 'users', action: 'new', as: 'new_user'
+  get '/users/new', controller: 'users', action: 'new', as: 'new_user'
   post '/users', controller: 'users', action: 'create'
 
   # READ
