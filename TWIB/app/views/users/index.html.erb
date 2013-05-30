@@ -1,6 +1,6 @@
 <h3>Users</h3>
 <p><%= link_to 'Add a New User', new_user_url %></p>
-<%= link_to 'Click to View Units', units_path %>
+
 
 <table>
   <thead>
@@ -16,15 +16,13 @@
 <tbody>
 <% @users.each do |user| %>
   <tr>
-    <td><%= user.user_name %></td>
-      <td><%= user.user_last_name %></td>
-      <td><%= user.record %></td>
-      <td><%= user.units %></td>
-
-
+    <td><%= user.username%></td>
     <td><%= link_to 'Show', user_url(user) %></td>
-     </tr>
+    <td><%= link_to 'Edit', edit_user_url(user) %></td>
+    <td><%= link_to 'Destroy', user_url(user), method: 'delete', data: { confirm: "Do you really want to delete this team?" } %></td>
+  </tr>
 <% end %>
+</tbody>
 </table>
 
 

@@ -22,7 +22,7 @@
     if @game.save
       redirect_to games_url
     else
-      render 'new'
+      redirect_to '/games/new', notice: "you screwed up again."
     end
   end
 
