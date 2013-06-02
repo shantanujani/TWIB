@@ -1,3 +1,4 @@
+<% if session["user_id"] %>
 <h3>New Game</h3>
 
 
@@ -28,4 +29,7 @@
   <div>
     <%= submit_tag "Create Game" %>
   </div>
+<% else %>
+<% redirect_to games_url %>
+<% end %>
 <% end %>

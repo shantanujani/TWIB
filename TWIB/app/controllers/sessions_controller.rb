@@ -9,11 +9,11 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by_user_first_name(params["user_first_name"])
+    user = User.find_by_username(params["username"])
 
     if user && user.authenticate(params["password"])
       session["user_id"] = user.id
-      redirect_to "/games", notice: "Welcome back, #{user.name}"
+      redirect_to "/games", notice: "Welcome back, #{user.username}"
     else
       redirect_to "/login", notice: "Unknown username or password."
     end

@@ -30,9 +30,9 @@ def create
 
   if @user.save
     session["user_id"] = @user.id
-    redirect_to users_url
+    redirect_to games_url
   else
-    render 'new'
+    redirect_to '/users/new', notice: "Username is already taken. Please pick a new one."
   end
 end
 

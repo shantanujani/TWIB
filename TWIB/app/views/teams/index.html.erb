@@ -1,7 +1,7 @@
-  <h3>Teams</h3>
-
+<h3>Teams</h3>
+<% if session["user_id"] %>
 <p><%= link_to 'Add a New Team', new_team_url %></p>
-
+<% end %>
 
 <table>
   <thead>

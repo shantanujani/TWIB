@@ -13,13 +13,13 @@
     <nav>
       <%= link_to "Games", '/games' %> |
       <%= link_to "Teams", '/teams' %> |
-      <% if session["user_id"].present? %>
-        Hello, <%= User.find_by_id(session["user_id"]).username %>!
-        <%= link_to "Sign Out", "/logout" %>
-      <% else %>
-        <%= link_to "Sign Up", '/users/new' %>
-        <%= link_to "Login", '/login' %>
-      <% end %>
+  <% if session["user_id"].present? %>
+            Hello, <%= User.find_by_id(session["user_id"]).username %>!
+            <%= link_to "Sign Out", "/logout" %>
+        <% else %>
+            <%= link_to "Sign Up", '/users/new' %>
+            <%= link_to "Login", '/login' %>
+<% end %>
 
 
 
