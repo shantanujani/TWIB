@@ -24,9 +24,11 @@
       <td><%= game.line %></td>
    <!--    <td><%= game.home_team_result%></td> -->
 
+<% if session["user_id"] %>
       <td><%= link_to 'Show', game_url(game) %></td>
       <td><%= link_to 'Edit', edit_game_url(game) %></td>
       <td><%= link_to 'Destroy', game_url(game), method: 'delete', data: { confirm: "Do you really want to delete this game?" } %></td>
+<% end %>
 
     </tr>
   <% end %>

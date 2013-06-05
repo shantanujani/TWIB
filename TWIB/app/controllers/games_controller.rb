@@ -9,6 +9,10 @@
   end
 
   def new
+    if session["user_id"].blank?
+      redirect_to '/games', notice: "Please sign in first."
+    end
+
     @game = Game.new
   end
 

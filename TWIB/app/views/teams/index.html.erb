@@ -22,10 +22,11 @@
       <td><%= team.conference %></td>
       <td><%= team.division %></td>
 
+<% if session["user_id"] %>
       <td><%= link_to 'Show', team_url(team) %></td>
       <td><%= link_to 'Edit', edit_team_url(team) %></td>
       <td><%= link_to 'Destroy', team_url(team), method: 'delete', data: { confirm: "Do you really want to delete this team?" } %></td>
-
+<% end %>
     </tr>
   <% end %>
   </tbody>

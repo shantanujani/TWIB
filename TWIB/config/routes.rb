@@ -8,6 +8,8 @@ TWIB::Application.routes.draw do
   post '/sessions', controller: 'sessions', action: 'create'
   get "/logout", controller: 'sessions', action: 'destroy'
 
+
+  get '/', controller: 'games', action: 'index'
   # Routes for the Game resource:
   # CREATE
   get '/games/new', controller: 'games', action: 'new', as: 'new_game'
@@ -104,7 +106,7 @@ TWIB::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'games#index'
 
   # See how all your routes lay out with "rake routes"
 

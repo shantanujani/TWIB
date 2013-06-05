@@ -9,6 +9,9 @@ class TeamsController < ApplicationController
   end
 
   def new
+    if session["user_id"].blank?
+      redirect_to '/teams', notice: "Please sign in first."
+    end
     @team = Team.new
   end
 
@@ -17,7 +20,7 @@ class TeamsController < ApplicationController
     @team.team_name = params[:team_name]
     @team.conference = params[:conference]
     @team.division = params[:division]
-    
+
     if @team.save
       redirect_to teams_url
     else
@@ -34,7 +37,7 @@ class TeamsController < ApplicationController
     @team.team_name = params[:team_name]
     @team.conference = params[:conference]
     @team.division = params[:division]
-    
+
     if @team.save
       redirect_to teams_url
     else
