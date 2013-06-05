@@ -37,22 +37,29 @@ def create
 end
 
 def edit
-  @user = User.find(params[:id])
+  @user = User.find_by_id(params[:id])
 end
 
 def update
-  @user = User.find(params[:id])
+  @user = User.find_by_id(params[:id])
   @user.username = params[:username]
+  @user.commissioner = params[:commissioner]
 
-  respond_to do |format|
-    if @user.update_attributes(params[:user])
-      format.html { redirect_to @user, notice: 'User Profile was successfully updated.' }
-      format.json { head :no_content }
+  if @user.save
+      redirect_to users_url
     else
-      format.html { render action: "edit" }
-      format.json { render json: @user.errors, status: :unprocessable_entity }
-    end
+      redirect_to edit_user_url
   end
+
+  # respond_to do |format|
+  #   if @user.update_attributes(params[:user])
+  #     format.html { redirect_to @user, notice: 'User Profile was successfully updated.' }
+  #     format.json { head :no_content }
+  #   else
+  #     format.html { render action: "edit" }
+  #     format.json { render json: @user.errors, status: :unprocessable_entity }
+  #   end
+  # end
 end
 
 def destroy

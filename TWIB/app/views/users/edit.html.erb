@@ -1,6 +1,20 @@
 <h3>Editing User</h3>
 
-<%= render 'form' %>
+<%= form_tag(user_url(@user), method: 'put') do %>
 
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+  <div>
+    <%= label_tag :username %><br />
+    <%= text_field_tag :username, @user.username %>
+  </div>
+
+  <div>
+    <%= label_tag :commissioner %><br />
+    <%= text_field_tag :commissioner, @user.commissioner %>
+  </div>
+
+  <div>
+    <%= submit_tag "Update User " %>
+  </div>
+
+<% end %>
+

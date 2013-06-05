@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130603183804) do
+ActiveRecord::Schema.define(:version => 20130605144942) do
 
   create_table "games", :force => true do |t|
     t.integer "home_team_id"
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(:version => 20130603183804) do
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
     t.string   "password_digest"
-    t.boolean  "admin"
+    t.boolean  "commissioner"
   end
 
 end

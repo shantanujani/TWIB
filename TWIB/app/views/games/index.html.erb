@@ -22,7 +22,7 @@
       <td><%= game.home_team.team_name %></td>
       <td><%= game.visiting_team.team_name %></td>
       <td><%= game.line %></td>
-   <!--    <td><%= game.home_team_result%></td> -->
+      <td><%= game.home_team_result%></td>
 
 <% if session["user_id"] %>
       <td><%= link_to 'Show', game_url(game) %></td>
