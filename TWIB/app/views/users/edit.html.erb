@@ -7,9 +7,14 @@
     <%= text_field_tag :username, @user.username %>
   </div>
 
+<div>
+    <%= label_tag :password %><br />
+    <%= password_field_tag :password, @user.password %>
+  </div>
+
   <div>
     <%= label_tag :commissioner %><br />
-    <%= text_field_tag :commissioner, @user.commissioner %>
+    <%= select_tag :commissioner, options_for_select(["User", "Site Admin"], "User") %>
   </div>
 
   <div>

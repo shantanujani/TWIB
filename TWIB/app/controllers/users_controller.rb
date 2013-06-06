@@ -26,6 +26,7 @@ def create
   @user = User.new
   @user.username = params[:username]
   @user.password = params[:password]
+  @user.commissioner = "user"
   # @user.unit = params[:unit]
 
   if @user.save
@@ -44,11 +45,15 @@ def update
   @user = User.find_by_id(params[:id])
   @user.username = params[:username]
   @user.commissioner = params[:commissioner]
+  @user.password = params[:password]
 
-  if @user.save
-      redirect_to users_url
-    else
-      redirect_to edit_user_url
+  if @user && @user.authenticate(params["password"])
+      if @user.save
+        redirect_to users_url, notice: "User admin levels changed."
+      else
+        redirect_to edit_user_url, notice: "User changes not saved - incorrect password."
+      end
+  elsif redirect_to edit_user_url, notice: "User changes not saved - you messed up."
   end
 
   # respond_to do |format|
