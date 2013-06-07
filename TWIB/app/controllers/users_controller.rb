@@ -1,6 +1,22 @@
 class UsersController < ApplicationController
 
 def index
+  # if session["user_id"].blank?
+  #     redirect_to '/games', notice: "Please sign in first."
+  # end
+
+  # if session["user_id"].present?
+  #   if User.find_by_id(session["user_id"]).commissioner != "Site Admin"
+  #       redirect_to '/games', notice: "You are not authorized to see this page."
+  #   end
+  # end
+
+  if session["user_id"].blank?
+      return redirect_to '/games', notice: "Please sign in first."
+    elsif User.find_by_id(session["user_id"]).commissioner != "Site Admin"
+      return redirect_to '/games', notice: "You are not authorized to see this page."
+  end
+
   @users = User.all
 end
 
@@ -14,6 +30,25 @@ def show
 end
 
 def new
+  # if session["user_id"].blank?
+  #     return redirect_to '/games', notice: "Please sign in first."
+  # end
+
+
+  # if session["user_id"].present?
+  #   if User.find_by_id(session["user_id"]).commissioner != "Site Admin"
+  #       return redirect_to '/games', notice: "You are not authorized to see this page."
+  #   end
+  # end
+
+
+  if session["user_id"].blank?
+      return redirect_to '/games', notice: "Please sign in first."
+    elsif User.find_by_id(session["user_id"]).commissioner != "Site Admin"
+      return redirect_to '/games', notice: "You are not authorized to see this page."
+  end
+
+
   @user = User.new
 
   respond_to do |format|
