@@ -1,5 +1,17 @@
 class UsersController < ApplicationController
 
+before_filter :correct_user, :except => [:new, :create]
+skip_before_filter :signed_in_user, :only => [:new, :create]
+
+
+ def correct_user
+    if session["user_id"].blank?
+      return redirect_to '/', notice: "Please sign in first."
+    elsif User.find_by_id(session["user_id"]).commissioner != "Site Admin"
+      return redirect_to '/games', notice: "You are not authorized to see this page."
+    end
+  end
+
 def index
   # if session["user_id"].blank?
   #     redirect_to '/games', notice: "Please sign in first."
@@ -11,11 +23,11 @@ def index
   #   end
   # end
 
-  if session["user_id"].blank?
-      return redirect_to '/games', notice: "Please sign in first."
-    elsif User.find_by_id(session["user_id"]).commissioner != "Site Admin"
-      return redirect_to '/games', notice: "You are not authorized to see this page."
-  end
+  # if session["user_id"].blank?
+  #     return redirect_to '/games', notice: "Please sign in first."
+  #   elsif User.find_by_id(session["user_id"]).commissioner != "Site Admin"
+  #     return redirect_to '/games', notice: "You are not authorized to see this page."
+  # end
 
   @users = User.all
 end
@@ -42,11 +54,11 @@ def new
   # end
 
 
-  if session["user_id"].blank?
-      return redirect_to '/games', notice: "Please sign in first."
-    elsif User.find_by_id(session["user_id"]).commissioner != "Site Admin"
-      return redirect_to '/games', notice: "You are not authorized to see this page."
-  end
+  # if session["user_id"].blank?
+  #     return redirect_to '/games', notice: "Please sign in first."
+  #   elsif User.find_by_id(session["user_id"]).commissioner != "Site Admin"
+  #     return redirect_to '/games', notice: "You are not authorized to see this page."
+  # end
 
 
   @user = User.new

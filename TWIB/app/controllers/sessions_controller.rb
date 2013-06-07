@@ -1,8 +1,12 @@
 class SessionsController < ApplicationController
 
+skip_before_filter :signed_in_user, :only => [:create, :new]
+skip_before_filter :correct_user, :only => [:create, :new]
+
+
   def destroy
     session["user_id"] = nil
-    redirect_to "/games", notice: "Come back soon!"
+    redirect_to "/", notice: "Come back soon!"
   end
 
   def new

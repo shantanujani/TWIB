@@ -11,9 +11,13 @@
  <header>
     <h1>TWIB</h1>
     <nav>
+
+  <% if session["user_id"].present? %>
       <%= link_to "Games", '/games' %> |
       <%= link_to "Teams", '/teams' %> |
-  <% if session["user_id"].present? %>
+      <% if User.find_by_id(session["user_id"]).commissioner == "Site Admin" %>
+        <%= link_to "Users", "/users" %>
+    <% end %>
       Hello, <%= User.find_by_id(session["user_id"]).username %>!
       <%= link_to "Sign Out", "/logout" %>
   <% else %>
@@ -21,11 +25,7 @@
       <%= link_to "Login", '/login' %>
   <% end %>
 
-  <% if session["user_id"].present? %>
-    <% if User.find_by_id(session["user_id"]).commissioner == "Site Admin" %>
-        <%= link_to "Users", "/users" %>
-    <% end %>
-   <% end %>
+
 
 
   </header>
