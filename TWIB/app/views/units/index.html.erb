@@ -9,6 +9,9 @@
 
 <% @units.each do |unit| %>
   <tr>
+    <td><%= bet.unit.won_units %></td>
+      <td><%= bet.unit.lost_units %></td>
+      <td><%= bet.net_position %></td>
     <td><%= link_to 'Show', unit %></td>
     <td><%= link_to 'Edit', edit_unit_path(unit) %></td>
     <td><%= link_to 'Destroy', unit, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -1,0 +1,29 @@
+<% if session["user_id"] %>
+<h3>Choose Game</h3>
+
+
+<%= form_tag(bets_url, method: 'post') do %>
+
+
+  <div>
+    <%= label_tag :game_id %><br />
+    <%= select_tag :game_id, options_from_collection_for_select(Game.order('home_team_id asc'), :id, :home_team_id) %>
+  </div>
+
+  
+  <div>
+    <%= label_tag :home_bet %><br />
+    <%= text_field_tag :home_bet %>
+  </div>
+
+<div>
+    <%= label_tag :away_bet %><br />
+    <%= text_field_tag :away_bet %>
+  </div>
+
+
+  <div>
+    <%= submit_tag "Place Bet" %>
+  </div>
+<% end %>
+<% end %>

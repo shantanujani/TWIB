@@ -1,4 +1,7 @@
 TWIB::Application.routes.draw do
+  resources :bets
+
+
   resources :units
 
 
