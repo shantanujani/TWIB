@@ -6,8 +6,8 @@
 
 
   <div>
-    <%= label_tag :id %><br />
-  <%= select_tag :id, options_from_collection_for_select(Game.order('id asc'), :id, :home_team_id) %>
+  <%= label_tag :game_id %><br />
+  <%= select_tag :game_id, options_from_collection_for_select(Game.order('home_team_id asc'), :id, :home_team_id ) %>
 
   <!-- <% form_for :game_id, :games_controller => {:action => :show} do |f| %>
   <%= f.text_field :game_id %>
@@ -16,7 +16,7 @@
 <% end %> -->
   </div>
 
-  
+
   <div>
     <%= label_tag :home_bet %><br />
     <%= text_field_tag :home_bet %>

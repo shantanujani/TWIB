@@ -4,9 +4,10 @@
 <table>
   <thead>
     <tr>
+      <th>Game</th>
       <th>Username</th>
-      <th>Units wagered</th>
-      <th>Units won</th>
+      <th>Home units wagered</th>
+      <th>Away units wagered</th>
       <th>Units lost</th>
       <th>Net position</th>
       <!-- <th>Home team result</th> -->
@@ -18,4 +19,21 @@
 
 <p><%= link_to 'Place New Bet', new_bet_path %></p>
 
-   <tbody>
+<tbody>
+  <% @bets.each do |bet| %>
+    <tr>
+      <td><%= "#{bet.game.home_team.team_name}  vs. #{bet.game.visiting_team.team_name}" %> </td>
+      <td><%= bet.user.username %></td>
+      <td><%= bet.home_bets_placed %></td>
+      <td><%= bet.away_bets_placed %></td>
+
+
+<% if session["user_id"] %>
+      <td><%= link_to 'Show', bet_url(bet) %></td>
+      <td><%= link_to 'Edit', edit_bet_url(bet) %></td>
+      <td><%= link_to 'Destroy', bet_url(bet), method: 'delete', data: { confirm: "Do you really want to delete this bet?" } %></td>
+<% end %>
+
+    </tr>
+  <% end %>
+  </tbody>

@@ -3,7 +3,8 @@ class BetsController < ApplicationController
   # GET /bets.json
   def index
     @bets = Bet.all
-    #@games = Game.all
+    @games = Game.all
+
 
     respond_to do |format|
       format.html # index.html.erb
@@ -26,6 +27,7 @@ class BetsController < ApplicationController
   # GET /bets/new.json
   def new
     @bet = Bet.new
+    @games = Game.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,11 +43,17 @@ class BetsController < ApplicationController
   # POST /bets
   # POST /bets.json
   def create
-    @bet = Bet.new(params[:bet])
+    @bet = Bet.new
+    @bet.game_id = params[:game_id]
+    @bet.user_id = session["user_id"]
+    @bet.home_bets_placed = params[:home_bet]
+    @bet.away_bets_placed = params[:away_bet]
+
+
 
     respond_to do |format|
       if @bet.save
-        format.html { redirect_to @bet, notice: 'Bet was successfully created.' }
+        format.html { redirect_to '/bets', notice: 'Bet was successfully created.' }
         format.json { render json: @bet, status: :created, location: @bet }
       else
         format.html { render action: "new" }
