@@ -19,10 +19,10 @@
   </div>
 
   <div>
-    <%= label_tag :home_team_result %><br />
-    <%= check_box_tag :home_team_result, @game.home_team_result? %>
+    <%= label_tag "The home team:" %><br />
+    <%= select_tag :home_team_result, options_for_select(["", "Won", "Lost"], @game.home_team_result) %>
   </div>
-
+  <br></br>
 
   <div>
     <%= submit_tag "Update Game" %>

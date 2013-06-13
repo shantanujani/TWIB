@@ -1,6 +1,37 @@
 <h1>Editing bet</h1>
 
-<%= render 'form' %>
+<%= form_tag(bet_url(@bet), method: 'put') do %>
 
-<%= link_to 'Show', @bet %> |
-<%= link_to 'Back', bets_path %>
+<p>
+  <b>Game:</b>
+  <%= "#{@bet.game.home_team.team_name} vs. #{@bet.game.visiting_team.team_name}" %>
+</p>
+
+<p>
+  <b>Line:</b>
+  <%= @bet.game.line %>
+</p>
+
+<div>
+    <%= label_tag :home_bet %><br />
+    <%= text_field_tag :home_bet, @bet.home_bets_placed %>
+  </div>
+
+<div>
+    <%= label_tag :away_bet %><br />
+    <%= text_field_tag :away_bet, @bet.away_bets_placed %>
+  </div>
+
+
+  <div>
+    <%= submit_tag "Update Bet" %>
+  </div>
+
+<% end %>
+
+
+
+
+
+
+

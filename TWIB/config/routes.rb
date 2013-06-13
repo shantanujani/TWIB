@@ -7,6 +7,8 @@ TWIB::Application.routes.draw do
 
   resources :users
 
+  get '/award_bets/:id', controller: 'bets', action: 'award_bets', as: 'award_bets'
+
   get '/login', controller: 'sessions', action: 'new'
   post '/sessions', controller: 'sessions', action: 'create'
   get "/logout", controller: 'sessions', action: 'destroy'
@@ -60,11 +62,14 @@ TWIB::Application.routes.draw do
   get '/bets/:id/edit', controller: 'bets', action: 'edit', as: 'edit_bet'
   put '/bets/:id', controller: 'bets', action: 'update'
 
+
   # DELETE
   delete '/bets/:id', controller: 'bets', action: 'destroy'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
+
+  #-------------------------------
   get '/users/new', controller: 'users', action: 'new', as: 'new_user'
   post '/users', controller: 'users', action: 'create'
 

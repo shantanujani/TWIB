@@ -1,4 +1,4 @@
-<h3>Bets Table</h3>
+<h3>Bets Table (go to each game to edit bets)</h3>
 
 
 <table>
@@ -8,7 +8,8 @@
       <th>Username</th>
       <th>Home units wagered</th>
       <th>Away units wagered</th>
-
+      <th>Home units awarded</th>
+      <th>Away units awarded</th>
       <!-- <th>Home team result</th> -->
       <th></th>
       <th></th>
@@ -25,11 +26,12 @@
       <td><%= bet.user.username %></td>
       <td><%= bet.home_bets_placed %></td>
       <td><%= bet.away_bets_placed %></td>
-
+      <td><%= bet.home_bets_awarded %></td>
+      <td><%= bet.away_bets_awarded %></td>
 
 <% if User.find_by_id(session["user_id"]).commissioner == "Site Admin" %>
       <td><%= link_to 'Show', bet_url(bet) %></td>
-      <td><%= link_to 'Edit', edit_bet_url(bet) %></td>
+
       <td><%= link_to 'Destroy', bet_url(bet), method: 'delete', data: { confirm: "Do you really want to delete this bet?" } %></td>
 <% end %>
 

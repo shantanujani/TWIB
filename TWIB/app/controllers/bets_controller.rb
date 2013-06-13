@@ -86,21 +86,28 @@ before_filter :correct_user, :except => [:new, :create, :index]
   # PUT /bets/1.json
   def update
     @bet = Bet.find(params[:id])
+    @game_id = @bet.game_id
 
-    respond_to do |format|
-      if @bet.update_attributes(params[:bet])
-        format.html { redirect_to @bet, notice: 'Bet was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @bet.errors, status: :unprocessable_entity }
-      end
+    @bet.home_bets_placed = params[:home_bet]
+    @bet.away_bets_placed = params[:awway_bet]
+
+    if @bet.save
+      redirect_to game_url(@game_id)
+    elsif
+      redirect_to edit_bet_url, notice: "There was an error, please try again."
     end
-  end
 
-  def matchup
-    @bets = Bet.find_all_by_game_id(session["user_id"])
-end
+
+    # respond_to do |format|
+    #   if @bet.update_attributes(params[:bet])
+    #     format.html { redirect_to @bet, notice: 'Bet was successfully updated.' }
+    #     format.json { head :no_content }
+    #   else
+    #     format.html { render action: "edit" }
+    #     format.json { render json: @bet.errors, status: :unprocessable_entity }
+    #   end
+    # end
+  end
 
 
   # DELETE /bets/1
@@ -112,6 +119,44 @@ end
     respond_to do |format|
       format.html { redirect_to bets_url }
       format.json { head :no_content }
+    end
+  end
+
+  def award_bets
+    @bet = Bet.find_all_by_game_id(params[:id])
+    # @game_id = @bet.game_id
+
+    total_home_bets_placed = 0
+    total_away_bets_placed = 0
+
+    @bet.each do |bet|
+      if bet.home_bets_placed == nil
+        total_home_bets_placed += 0
+      elsif
+        total_home_bets_placed += bet.home_bets_placed
+      end
+    end
+
+    @bet.each do |bet|
+      if bet.away_bets_placed == nil
+        total_away_bets_placed += 0
+      elsif
+        total_away_bets_placed += bet.away_bets_placed
+      end
+    end
+
+    if total_home_bets_placed == total_away_bets_placed
+      @bet.each do |bet|
+        bet.home_bets_awarded = bet.home_bets_placed
+        bet.away_bets_awarded = bet.away_bets_placed
+      end
+    # elsif total_home_bets_placed > total_away_bets_placed
+    end
+
+    if @bet.save
+      redirect_to game_url(@game_id)
+    elsif
+      redirect_to game_url(@game_id), notice: "There was an error, please try again."
     end
   end
 end

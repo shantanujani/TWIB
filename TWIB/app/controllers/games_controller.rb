@@ -14,10 +14,13 @@ before_filter :correct_user, :except => [:new, :create, :index]
 
   def index
     @games = Game.all
+
+
   end
 
   def show
     @game = Game.find_by_id(params[:id])
+    @bet = Bet.find_all_by_game_id(params[:id])
   end
 
   def new
@@ -47,6 +50,8 @@ before_filter :correct_user, :except => [:new, :create, :index]
   end
 
   def update
+    @bet = Bet.find_all_by_game_id(params[:id])
+
     @game = Game.find_by_id(params[:id])
     @game.home_team_id = params[:home_team_id]
     @game.visiting_team_id = params[:visiting_team_id]
@@ -64,5 +69,35 @@ before_filter :correct_user, :except => [:new, :create, :index]
     @game = Game.find_by_id(params[:id])
     @game.destroy
     redirect_to games_url
+  end
+
+  def award_bets
+    @bet = Bet.find_all_by_game_id(params[:id])
+    total_home_bets_placed = 0
+    total_away_bets_placed = 0
+
+    @bet.each do |bet|
+      if bet.home_bets_placed == nil
+        total_home_bets_placed += 0
+      elsif
+        total_home_bets_placed += bet.home_bets_placed
+      end
+    end
+
+    @bet.each do |bet|
+      if bet.away_bets_placed == nil
+        total_away_bets_placed += 0
+      elsif
+        total_away_bets_placed += bet.away_bets_placed
+      end
+    end
+
+    if total_home_bets_placed == total_away_bets_placed
+      @bet.each do |bet|
+        bet.home_bets_awarded = bet.home_bets_placed
+        bet.away_bets_awarded = bet.away_bets_placed
+      end
+    # elsif total_home_bets_placed > total_away_bets_placed
+    end
   end
 end
