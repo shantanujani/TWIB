@@ -89,7 +89,9 @@ before_filter :correct_user, :except => [:new, :create, :index]
     @game_id = @bet.game_id
 
     @bet.home_bets_placed = params[:home_bet]
-    @bet.away_bets_placed = params[:awway_bet]
+    @bet.away_bets_placed = params[:away_bet]
+    @bet.home_bets_awarded = params[:home_bet_awarded]
+    @bet.away_bets_awarded = params[:away_bet_awarded]
 
     if @bet.save
       redirect_to game_url(@game_id)
@@ -123,40 +125,74 @@ before_filter :correct_user, :except => [:new, :create, :index]
   end
 
   def award_bets
-    @bet = Bet.find_all_by_game_id(params[:id])
+    @game = Game.find(params[:id])
+    @bets = @game.bets
+    # @bet = Bet.all
     # @game_id = @bet.game_id
 
-    total_home_bets_placed = 0
-    total_away_bets_placed = 0
+    bucket = Array.new
 
-    @bet.each do |bet|
-      if bet.home_bets_placed == nil
-        total_home_bets_placed += 0
-      elsif
-        total_home_bets_placed += bet.home_bets_placed
-      end
-    end
-
-    @bet.each do |bet|
-      if bet.away_bets_placed == nil
-        total_away_bets_placed += 0
-      elsif
-        total_away_bets_placed += bet.away_bets_placed
-      end
-    end
+    total_home_bets_placed = @bets.sum(:home_bets_placed)
+    total_away_bets_placed = @bets.sum(:away_bets_placed)
 
     if total_home_bets_placed == total_away_bets_placed
-      @bet.each do |bet|
-        bet.home_bets_awarded = bet.home_bets_placed
+      @bets.each do |bet|
         bet.away_bets_awarded = bet.away_bets_placed
+        bet.home_bets_awarded = bet.home_bets_placed
+        bet.save
       end
-    # elsif total_home_bets_placed > total_away_bets_placed
-    end
 
-    if @bet.save
-      redirect_to game_url(@game_id)
-    elsif
-      redirect_to game_url(@game_id), notice: "There was an error, please try again."
+
+    elsif total_home_bets_placed < total_away_bets_placed
+
+      @bets.each do |bet|
+      bet.home_bets_awarded = bet.home_bets_placed
+      bet.save
+      end
+
+
+      # k = @bets.count(away_bets_placed)
+
+      # @bets.each do |bet|
+      #   if bet.away_bets_placed != 0
+      #     bucket[0] = bet
+
+      for i in 0..@bets.count-1
+        if @bets[i].away_bets_placed != 0
+          bucket[i] = @bets[i]
+        end
+        bucket.compact!
+      end
+
+
+      total_away_bets_awarded = 0
+
+        for i in 0..2000
+      # for i in 0..@bets.sum(:home_bets_placed)
+        if total_away_bets_awarded < total_home_bets_placed
+          y = bucket.sample
+          x = y.id
+          bet_element = @bets.find_by_id(x)
+          # bet_element = bucket.sample.away_bets_awarded
+
+          if bet_element.away_bets_awarded < bet_element.away_bets_placed
+            bet_element.away_bets_awarded += 1
+            bet_element.save
+            total_away_bets_awarded +=1
+          else
+            bucket.delete(y)
+            # i = i-2
+          end
+        end
+      end
+
+      # if @bets.save
+      #   redirect_to game_url(@game_id)
+      # elsif
+      #   redirect_to game_url(@game_id), notice: "There was an error, please try again."
+      # end
+    else total_home_bets_placed > total_away_bets_placed
+
     end
   end
 end
