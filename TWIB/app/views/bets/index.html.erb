@@ -8,8 +8,7 @@
       <th>Username</th>
       <th>Home units wagered</th>
       <th>Away units wagered</th>
-      <th>Units lost</th>
-      <th>Net position</th>
+
       <!-- <th>Home team result</th> -->
       <th></th>
       <th></th>
@@ -28,7 +27,7 @@
       <td><%= bet.away_bets_placed %></td>
 
 
-<% if session["user_id"] %>
+<% if User.find_by_id(session["user_id"]).commissioner == "Site Admin" %>
       <td><%= link_to 'Show', bet_url(bet) %></td>
       <td><%= link_to 'Edit', edit_bet_url(bet) %></td>
       <td><%= link_to 'Destroy', bet_url(bet), method: 'delete', data: { confirm: "Do you really want to delete this bet?" } %></td>

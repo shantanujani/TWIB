@@ -1,10 +1,31 @@
 class BetsController < ApplicationController
+
+before_filter :correct_user, :except => [:new, :create, :index]
+
+
+ def correct_user
+    if session["user_id"].blank?
+      return redirect_to '/', notice: "Please sign in first."
+    elsif User.find_by_id(session["user_id"]).commissioner != "Site Admin"
+      return redirect_to '/games', notice: "You are not authorized to see this page."
+    end
+  end
+
   # GET /bets
   # GET /bets.json
   def index
-    @bets = Bet.all
+
     @games = Game.all
 
+    if User.find_by_id(session["user_id"]).commissioner != "Site Admin"
+       @bets = Bet.find_all_by_user_id(session["user_id"])
+     elsif
+       @bets = Bet.all
+     end
+
+
+    # @bet = Bet.find_all_by_id(params[:id])
+    # session["last_bet_id"] = @bet.id
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,7 +36,8 @@ class BetsController < ApplicationController
   # GET /bets/1
   # GET /bets/1.json
   def show
-    @bet = Bet.find(params[:id])
+    @bet = Bet.find_all_by_id(params[:id])
+    # session["last_bet_id"] = @bet.id
 
     respond_to do |format|
       format.html # show.html.erb
@@ -46,19 +68,17 @@ class BetsController < ApplicationController
     @bet = Bet.new
     @bet.game_id = params[:game_id]
     @bet.user_id = session["user_id"]
-    @bet.home_bets_placed = params[:home_bet]
     @bet.away_bets_placed = params[:away_bet]
+    @bet.home_bets_placed = params[:home_bet]
 
+    if @bet.save
+      return redirect_to '/bets', notice: 'Bet was successfully created.'
+        # format.json { render json: @bet, status: :created, location: @bet }
+    else
+      return redirect_to '/bets/new', notice: "You may only bet for the home team or the away team."
+        # format.html { render action: "new" }
+        # format.json { render json: @bet.errors, status: :unprocessable_entity }
 
-
-    respond_to do |format|
-      if @bet.save
-        format.html { redirect_to '/bets', notice: 'Bet was successfully created.' }
-        format.json { render json: @bet, status: :created, location: @bet }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @bet.errors, status: :unprocessable_entity }
-      end
     end
   end
 
@@ -77,6 +97,11 @@ class BetsController < ApplicationController
       end
     end
   end
+
+  def matchup
+    @bets = Bet.find_all_by_game_id(session["user_id"])
+end
+
 
   # DELETE /bets/1
   # DELETE /bets/1.json

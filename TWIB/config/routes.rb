@@ -47,6 +47,21 @@ TWIB::Application.routes.draw do
   delete '/teams/:id', controller: 'teams', action: 'destroy'
   #------------------------------
 
+  # Routes for the Team resource:
+  # CREATE
+  get '/bets/new', controller: 'bets', action: 'new', as: 'new_bets'
+  post '/bets', controller: 'bets', action: 'create'
+
+  # READ
+  get '/bets', controller: 'bets', action: 'index', as: 'bets'
+  get '/bets/:id', controller: 'bets', action: 'show', as: 'bet'
+
+  # UPDATE
+  get '/bets/:id/edit', controller: 'bets', action: 'edit', as: 'edit_bet'
+  put '/bets/:id', controller: 'bets', action: 'update'
+
+  # DELETE
+  delete '/bets/:id', controller: 'bets', action: 'destroy'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -7,7 +7,7 @@
 
   <div>
   <%= label_tag :game_id %><br />
-  <%= select_tag :game_id, options_from_collection_for_select(Game.order('home_team_id asc'), :id, :home_team_id ) %>
+  <%= select_tag :game_id, options_from_collection_for_select(Game.order('home_team_id asc'), :id, :game_details ) %>
 
   <!-- <% form_for :game_id, :games_controller => {:action => :show} do |f| %>
   <%= f.text_field :game_id %>

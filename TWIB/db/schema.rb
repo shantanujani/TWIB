@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130611222434) do
+ActiveRecord::Schema.define(:version => 20130613045450) do
 
   create_table "bets", :force => true do |t|
     t.datetime "created_at",        :null => false
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(:version => 20130611222434) do
     t.integer "home_team_id"
     t.integer "visiting_team_id"
     t.float   "line"
-    t.boolean "home_team_result"
+    t.string  "home_team_result"
   end
 
   create_table "teams", :force => true do |t|

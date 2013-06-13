@@ -38,7 +38,7 @@ before_filter :correct_user, :except => [:new, :create, :index]
     if @game.save
       redirect_to games_url
     else
-      redirect_to '/games/new', notice: "you screwed up again."
+      redirect_to '/games/new', notice: "There was an error, please try to create your game again."
     end
   end
 
