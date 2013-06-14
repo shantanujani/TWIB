@@ -1,0 +1,16 @@
+<h3>My Standings</h3>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Units Won</th>
+      <th>Units Lost</th>
+      <th>Win Percentage</th>
+    </tr>
+  </thead>
+<tbody>
+
+  <td><%= @wins %></td>
+  <td><%= @losses %></td>
+  <td><%= @percentage.round(3)*100 %>%</td>

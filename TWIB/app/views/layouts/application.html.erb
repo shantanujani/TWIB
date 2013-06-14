@@ -16,6 +16,7 @@
       <%= link_to "Games", '/games' %> |
       <%= link_to "Teams", '/teams' %> |
       <%= link_to "Bets", '/bets' %> |
+      <%= link_to "My results", '/results' %> |
       <% if User.find_by_id(session["user_id"]).commissioner == "Site Admin" %>
         <%= link_to "Users", "/users" %>
     <% end %>

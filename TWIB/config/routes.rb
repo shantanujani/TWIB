@@ -8,6 +8,9 @@ TWIB::Application.routes.draw do
   resources :users
 
   get '/award_bets/:id', controller: 'bets', action: 'award_bets', as: 'award_bets'
+  get '/results/', controller: 'results', action: 'results', as: 'results'
+
+
 
   get '/login', controller: 'sessions', action: 'new'
   post '/sessions', controller: 'sessions', action: 'create'

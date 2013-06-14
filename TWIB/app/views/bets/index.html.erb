@@ -10,6 +10,7 @@
       <th>Away units wagered</th>
       <th>Home units awarded</th>
       <th>Away units awarded</th>
+      <th>The home team's result</th>
       <!-- <th>Home team result</th> -->
       <th></th>
       <th></th>
@@ -28,6 +29,7 @@
       <td><%= bet.away_bets_placed %></td>
       <td><%= bet.home_bets_awarded %></td>
       <td><%= bet.away_bets_awarded %></td>
+      <td><%= bet.game.home_team_result %></td>
 
 <% if User.find_by_id(session["user_id"]).commissioner == "Site Admin" %>
       <td><%= link_to 'Show', bet_url(bet) %></td>
